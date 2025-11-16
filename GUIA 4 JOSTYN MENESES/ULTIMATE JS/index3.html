@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Texto Avanzado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #8e2de2;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        button {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(142, 45, 226, 0.4);
+        }
+        
+        .stats-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #4a00e0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4a00e0;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .preview-section {
+            margin-top: 30px;
+        }
+        
+        .preview-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #4a00e0;
+        }
+        
+        .preview-box {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 100px;
+            border: 1px dashed #ccc;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .number {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analizador de Texto Avanzado</h1>
+            <p class="subtitle">Estadísticas completas de cualquier texto</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <textarea id="textInput" placeholder="Escribe o pega tu texto aquí...">hota como <big>estas</big>
+**bien** y tu
+como te va como
+
+Este es un segundo párrafo con números: 123 y 45.67.
+
+Y un tercer párrafo para probar!</textarea>
+                
+                <div class="button-container">
+                    <button id="analyzeBtn">Mostrar estadísticas</button>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h2 class="stats-title">Estadísticas del Texto</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="charCount">0</div>
+                        <div class="stat-label">Caracteres</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="wordCount">0</div>
+                        <div class="stat-label">Palabras</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="vowelCount">0</div>
+                        <div class="stat-label">Vocales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="consonantCount">0</div>
+                        <div class="stat-label">Consonantes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="numberCount">0</div>
+                        <div class="stat-label">Números</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="lineCount">0</div>
+                        <div class="stat-label">Líneas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="paragraphCount">0</div>
+                        <div class="stat-label">Párrafos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="signCount">0</div>
+                        <div class="stat-label">Signos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-section">
+                <h2 class="preview-title">Vista Previa del Texto</h2>
+                <div class="preview-box" id="textPreview">
+                    El texto aparecerá aquí con formato...
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Analizador de Texto Avanzado &copy; 2023</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textInput = document.getElementById('textInput');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const charCount = document.getElementById('charCount');
+            const wordCount = document.getElementById('wordCount');
+            const vowelCount = document.getElementById('vowelCount');
+            const consonantCount = document.getElementById('consonantCount');
+            const numberCount = document.getElementById('numberCount');
+            const lineCount = document.getElementById('lineCount');
+            const paragraphCount = document.getElementById('paragraphCount');
+            const signCount = document.getElementById('signCount');
+            const textPreview = document.getElementById('textPreview');
+            
+            // Función para analizar el texto
+            function analyzeText() {
+                const text = textInput.value;
+                
+                // Contar caracteres (incluyendo espacios)
+                const totalChars = text.length;
+                charCount.textContent = totalChars;
+                
+                // Contar palabras
+                const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+                wordCount.textContent = words.length;
+                
+                // Contar líneas
+                const lines = text.split('\n').filter(line => line.trim().length > 0);
+                lineCount.textContent = lines.length;
+                
+                // Contar párrafos (líneas vacías separan párrafos)
+                const paragraphs = text.split(/\n\s*\n/).filter(para => para.trim().length > 0);
+                paragraphCount.textContent = paragraphs.length;
+                
+                // Contar vocales, consonantes, números y signos
+                let vowels = 0;
+                let consonants = 0;
+                let numbers = 0;
+                let signs = 0;
+                
+                // Definir expresiones regulares
+                const vowelRegex = /[aeiouáéíóúAEIOUÁÉÍÓÚ]/;
+                const consonantRegex = /[bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ]/;
+                const numberRegex = /[0-9]/;
+                const signRegex = /[.,;:!?¿¡(){}[\]"'\-_@#$%^&*+=|<>/\\]/;
+                
+                for (let char of text) {
+                    if (vowelRegex.test(char)) {
+                        vowels++;
+                    } else if (consonantRegex.test(char)) {
+                        consonants++;
+                    } else if (numberRegex.test(char)) {
+                        numbers++;
+                    } else if (signRegex.test(char)) {
+                        signs++;
+                    }
+                }
+                
+                vowelCount.textContent = vowels;
+                consonantCount.textContent = consonants;
+                numberCount.textContent = numbers;
+                signCount.textContent = signs;
+                
+                // Mostrar vista previa con formato y resaltados
+                let previewHTML = text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/<big>(.*?)<\/big>/g, '<span style="font-size: 1.2em">$1</span>')
+                    .replace(/(\d+\.?\d*)/g, '<span class="number">$1</span>')
+                    .replace(/\n/g, '<br>');
+                
+                // Resaltar párrafos
+                previewHTML = previewHTML.replace(/(<br>\s*<br>)/g, '</p><p class="highlight">');
+                textPreview.innerHTML = '<p class="highlight">' + previewHTML + '</p>';
+            }
+            
+            // Analizar texto al cargar la página
+            analyzeText();
+            
+            // Analizar texto al hacer clic en el botón
+            analyzeBtn.addEventListener('click', analyzeText);
+            
+            // Analizar texto mientras se escribe
+            textInput.addEventListener('input', analyzeText);
+        });
+    </script>
+</body>
+</html>

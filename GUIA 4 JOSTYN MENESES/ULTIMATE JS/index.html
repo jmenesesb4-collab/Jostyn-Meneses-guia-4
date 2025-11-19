@@ -11,7 +11,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: #333;
@@ -21,7 +21,7 @@
             align-items: center;
             padding: 40px 20px;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1000px;
@@ -30,33 +30,33 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
-        
+
         header {
             background: linear-gradient(to right, #4a00e0, #8e2de2);
             color: white;
             padding: 25px;
             text-align: center;
         }
-        
+
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
-        
+
         .subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
         }
-        
+
         .content {
             padding: 30px;
         }
-        
+
         .input-section {
             margin-bottom: 30px;
         }
-        
+
         textarea {
             width: 100%;
             height: 200px;
@@ -67,12 +67,12 @@
             resize: vertical;
             transition: border-color 0.3s;
         }
-        
+
         textarea:focus {
             outline: none;
             border-color: #8e2de2;
         }
-        
+
         .button-container {
             display: flex;
             gap: 10px;
@@ -80,7 +80,7 @@
             margin-top: 20px;
             flex-wrap: wrap;
         }
-        
+
         button {
             background: linear-gradient(to right, #4a00e0, #8e2de2);
             color: white;
@@ -92,16 +92,16 @@
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
         }
-        
+
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(142, 45, 226, 0.4);
         }
-        
+
         .button-special {
             background: linear-gradient(to right, #ff6b6b, #ee5a24);
         }
-        
+
         .stats-section {
             background-color: #f8f9fa;
             border-radius: 10px;
@@ -109,21 +109,21 @@
             margin-top: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
-        
+
         .stats-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: #4a00e0;
             text-align: center;
         }
-        
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
-        
+
         .stat-card {
             background: white;
             border-radius: 10px;
@@ -132,33 +132,33 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s;
         }
-        
+
         .stat-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .stat-value {
             font-size: 1.8rem;
             font-weight: bold;
             color: #4a00e0;
             margin-bottom: 5px;
         }
-        
+
         .stat-label {
             font-size: 0.85rem;
             color: #666;
         }
-        
+
         .preview-section {
             margin-top: 30px;
         }
-        
+
         .preview-title {
             font-size: 1.3rem;
             margin-bottom: 15px;
             color: #4a00e0;
         }
-        
+
         .preview-box {
             background-color: #f8f9fa;
             border-radius: 10px;
@@ -168,47 +168,13 @@
             white-space: pre-wrap;
             word-wrap: break-word;
         }
-        
+
         footer {
             margin-top: 40px;
             text-align: center;
             color: white;
             font-size: 0.9rem;
             opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                border-radius: 10px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stat-value {
-                font-size: 1.5rem;
-            }
-            
-            .button-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            button {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -218,13 +184,11 @@
             <h1>Analizador de Texto Avanzado</h1>
             <p class="subtitle">¡Con todas las nuevas funciones!</p>
         </header>
-        
+
         <div class="content">
             <div class="input-section">
-                <textarea id="textInput" placeholder="Escribe o pega tu texto aquí...">Hola Mundo desde QUITO
-Este es un Texto de PRUEBA
-con MAYÚSCULAS y minúsculas</textarea>
-                
+                <textarea id="textInput" placeholder="Escribe o pega tu texto aquí...">Hola Mundo desde QUITO Este es un Texto de PRUEBA con MAYÚSCULAS y minúsculas</textarea>
+
                 <div class="button-container">
                     <button id="analyzeBtn">Mostrar estadísticas</button>
                     <button id="invertBtn" class="button-special">Texto Invertido</button>
@@ -232,7 +196,7 @@ con MAYÚSCULAS y minúsculas</textarea>
                     <button id="lowerBtn">A Minúsculas</button>
                 </div>
             </div>
-            
+
             <div class="stats-section">
                 <h2 class="stats-title">Estadísticas del Texto</h2>
                 <div class="stats-grid">
@@ -278,7 +242,7 @@ con MAYÚSCULAS y minúsculas</textarea>
                     </div>
                 </div>
             </div>
-            
+
             <div class="preview-section">
                 <h2 class="preview-title">Vista Previa del Texto</h2>
                 <div class="preview-box" id="textPreview">
@@ -287,26 +251,20 @@ con MAYÚSCULAS y minúsculas</textarea>
             </div>
         </div>
     </div>
-    
+
     <footer>
         <p>Analizador Avanzado &copy; 2023</p>
     </footer>
 
     <script>
-        // === TU CÓDIGO INTEGRADO ===
+        // === FUNCIÓN CORREGIDA: NO CUENTA ESPACIOS COMO PALABRAS ===
         function palabras(textoEntrante){
-            let palabrassss = textoEntrante;
-            let contador = 0;
-
-            for(let i = 0; i < palabrassss.length; i++){
-                if(i == 0 || palabrassss[i - 1] == ' '){
-                    contador++;
-                }
-            }
-            return contador;
+            let limpio = textoEntrante.trim();
+            if (limpio === "") return 0;
+            return limpio.split(/\s+/).length;
         }
 
-        // === NUEVAS FUNCIONES AÑADIDAS ===
+        // === NUEVAS FUNCIONES ===
         function invertirTexto(texto) {
             return texto.split('').reverse().join('');
         }
@@ -321,26 +279,27 @@ con MAYÚSCULAS y minúsculas</textarea>
             return matches ? matches.length : 0;
         }
 
-        // === FUNCIONES DEL ANALIZADOR ===
+        // === ANALIZADOR CORREGIDO ===
         function analyzeText(text) {
             const stats = {};
-            
-            // ¡USANDO TU FUNCIÓN!
+
+            // Palabras sin contar espacios
             stats.words = palabras(text);
-            
-            // Estadísticas existentes
-            stats.characters = text.length;
+
+            // Caracteres sin espacios
+            stats.characters = text.replace(/\s/g, '').length;
+
             stats.lines = text.split('\n').filter(line => line.trim().length > 0).length;
             stats.paragraphs = text.split(/\n\s*\n/).filter(para => para.trim().length > 0).length;
+
             stats.vowels = countVowels(text);
             stats.consonants = countConsonants(text);
             stats.numbers = countNumbers(text);
             stats.signs = countSigns(text);
-            
-            // NUEVAS ESTADÍSTICAS
+
             stats.uppercase = contarMayusculas(text);
             stats.lowercase = contarMinusculas(text);
-            
+
             return stats;
         }
 
@@ -369,14 +328,13 @@ con MAYÚSCULAS y minúsculas</textarea>
         }
 
         function formatPreview(text) {
-            // VERSIÓN SIMPLE - solo formato básico sin resaltados que causen problemas
             return text
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/<big>(.*?)<\/big>/g, '<span style="font-size: 1.2em">$1</span>')
                 .replace(/\n/g, '<br>');
         }
 
-        // === CÓDIGO PRINCIPAL ===
+        // === EVENTOS ===
         document.addEventListener('DOMContentLoaded', function() {
             const textInput = document.getElementById('textInput');
             const analyzeBtn = document.getElementById('analyzeBtn');
@@ -384,7 +342,7 @@ con MAYÚSCULAS y minúsculas</textarea>
             const upperBtn = document.getElementById('upperBtn');
             const lowerBtn = document.getElementById('lowerBtn');
             const textPreview = document.getElementById('textPreview');
-            
+
             const statElements = {
                 characters: document.getElementById('charCount'),
                 words: document.getElementById('wordCount'),
@@ -397,38 +355,37 @@ con MAYÚSCULAS y minúsculas</textarea>
                 paragraphs: document.getElementById('paragraphCount'),
                 signs: document.getElementById('signCount')
             };
-            
+
             function updateUI() {
                 const text = textInput.value;
                 const stats = analyzeText(text);
-                
+
                 for (const [key, element] of Object.entries(statElements)) {
                     if (element) {
                         element.textContent = stats[key] || 0;
                     }
                 }
-                
+
                 textPreview.innerHTML = formatPreview(text);
             }
-            
-            // Event listeners para los botones
+
             analyzeBtn.addEventListener('click', updateUI);
-            
+
             invertBtn.addEventListener('click', function() {
                 textInput.value = invertirTexto(textInput.value);
                 updateUI();
             });
-            
+
             upperBtn.addEventListener('click', function() {
                 textInput.value = textInput.value.toUpperCase();
                 updateUI();
             });
-            
+
             lowerBtn.addEventListener('click', function() {
                 textInput.value = textInput.value.toLowerCase();
                 updateUI();
             });
-            
+
             textInput.addEventListener('input', updateUI);
             updateUI();
         });
